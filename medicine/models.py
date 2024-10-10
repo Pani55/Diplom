@@ -103,3 +103,21 @@ class Appointment(models.Model):
     class Meta:
         verbose_name = "Запись на приём"
         verbose_name_plural = "Записи на приём"
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        verbose_name="Пользователь",
+    )
+    text = models.TextField(
+        verbose_name="Отзыв",
+    )
+
+    class Meta:
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
+
+    def __str__(self):
+        return f"{self.user} - {self.text[:50]}..."
