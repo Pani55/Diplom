@@ -1,9 +1,4 @@
 services:
-  redis:
-    image: redis:latest
-    restart: on-failure
-    expose:
-      - "6379"
 
   db:
     image: postgres
@@ -15,7 +10,7 @@ services:
     volumes:
       - /pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER"]
+      test: [ "CMD-SHELL", "-c", "pg_isready -U $POSTGRES_USER" ]
       interval: 10s
       retries: 5
       timeout: 5s
@@ -25,7 +20,7 @@ services:
     tty: true
     ports:
       - "8000:8000"
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000 && python manage.py csu"
     depends_on:
       db:
         condition: service_healthy
