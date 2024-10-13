@@ -15,6 +15,7 @@
                     <li><a href="{% url 'medicine:procedures_list' %}" class="text-white">Услуги</a></li>
                     <li><a href="{% url 'medicine:contact_info' %}" class="text-white">Контакты</a></li>
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'medicine:appointment_list' %}">Личный кабинет</a></li>
                     <li><a href="{% url 'users:logout' %}">Выход</a></li>
                     {% else %}
                     <li><a href="{% url 'users:login' %}">Вход</a></li>

@@ -96,6 +96,10 @@ class Appointment(models.Model):
         verbose_name="Дата и время записи",
         help_text="Выберите дату и время записи",
     )
+    result_of_appointment = models.TextField(
+        verbose_name="Результат приёма",
+        default="Здесь окажется результат осмотра, а так же рекомендации.",
+    )
 
     def __str__(self):
         return f"{self.doctor} - {self.patient} - {self.procedure}"

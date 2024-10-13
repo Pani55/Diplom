@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load media_tag %}
+{% block content %}
+<div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+    <div class="card mb-4 box-shadow">
+        {% for appointment in appointment_list %}
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ appointment.procedure }} {{ appointment.appointment_datetime }}</h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>Доктор: {{ appointment.doctor }}.</li>
+            </ul>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>Итоги и рекомендации: {{ appointment.result_of_appointment }} </li>
+            </ul>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

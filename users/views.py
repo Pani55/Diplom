@@ -15,11 +15,13 @@ from config.settings import EMAIL_HOST_USER
 
 
 class UserCreateView(CreateView):
+    """ This view is designed to be used for creating a new user """
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
+        """ This method performs the function of verifying by mail each new user """
         user = form.save()
         user.is_active = False
         token = secrets.token_hex(16)
@@ -37,6 +39,7 @@ class UserCreateView(CreateView):
 
 
 def email_verification(request, token):
+    """ This view is designed to be used for confirming the new user's email """
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
@@ -44,11 +47,13 @@ def email_verification(request, token):
 
 
 class GeneratePasswordView(PasswordResetView):
+    """ This view is designed to be used for generating a new password """
     form_class = PasswordResetForm
     template_name = "users/generate.html"
     success_url = reverse_lazy("users:login")
 
     def form_valid(self, form):
+        """ This method performs the function of generating a new password for the user """
         email = form.cleaned_data['email']
         user = get_object_or_404(User, email=email)
         if user:

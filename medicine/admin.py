@@ -11,7 +11,7 @@ class ProcedureAdmin(admin.ModelAdmin):
 
 @admin.register(Doctors)
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "specialization",)
+    list_display = ("first_name", "last_name", "specialization", "photo")
     list_filter = ("specialization",)
     search_fields = ("last_name",)
 

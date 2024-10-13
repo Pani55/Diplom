@@ -182,7 +182,7 @@
                 <p class="lead text-body-secondary">Мы рады вас обслуживать</p>
                 {% if user.is_authenticated %}
                 <p>
-                    <a class="btn btn-primary" href="#" role="button">Записаться на приём</a>
+                    <a class="btn btn-primary" href="{% url 'medicine:appointment_create' %}" role="button">Записаться на приём</a>
                 </p>
                 {% endif %}
             </div>
