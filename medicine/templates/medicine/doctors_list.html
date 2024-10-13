@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load media_tag %}
+{% block content %}
+<div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+    <div class="card mb-4 box-shadow">
+        {% for doctor in doctors_list %}
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ doctor.last_name }} {{ doctor.first_name }}</h4>
+        </div>
+        <div class="card-body">
+            <img src="{{ doctor.photo | media_tag }}">
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>Специализация: {{ doctor.specialization }}. Степень: {{ doctor.degree }}</li>
+            </ul>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>Процедуры: {% for procedure in doctor.procedures.all %}
+                               {{ procedure }}.
+                               {% endfor %}
+                </li>
+            </ul>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-4">
+        <hr>
+        <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom1"
+                aria-controls="offcanvasBottom1">История компании
+        </button>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom1"
+             aria-labelledby="offcanvasBottomLabel1">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel1">История компании ниже</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+            </div>
+            <div class="offcanvas-body small">
+                Здесь будет история вашей компании
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2"
+                aria-controls="offcanvasBottom2">Миссия и ценности
+        </button>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2"
+             aria-labelledby="offcanvasBottomLabel2">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel2">Миссия и ценности компании ниже</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+            </div>
+            <div class="offcanvas-body small">
+                Миссия и ценности
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

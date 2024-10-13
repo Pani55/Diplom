@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load media_tag %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Главная страница</h1>
+        </div>
+        <hr>
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h6 class="display-4">Наши услуги</h6>
+        </div>
+        <div class="container text-center">
+            <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-4">
+                {% for procedure in procedures_list %}
+                <div class="col">
+                    <div class="p-3">
+                        <a class="btn btn-mb btn-outline-light"
+                           href="{% url 'medicine:procedures_detail' procedure.pk %}">{{procedure.title}}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-4">
+        <hr>
+        <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom1"
+                aria-controls="offcanvasBottom1">Описание компании
+        </button>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom1"
+             aria-labelledby="offcanvasBottomLabel1">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel1">Описание компании ниже</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+            </div>
+            <div class="offcanvas-body small">
+                Здесь будет описание вашей компании
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2"
+                aria-controls="offcanvasBottom2">Контактная информация
+        </button>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2"
+             aria-labelledby="offcanvasBottomLabel2">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasBottomLabel2">Контакты компании ниже</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+            </div>
+            <div class="offcanvas-body small">
+                Вы можете связаться с нами по телефону --> +x-(xxx)-xxx-xx-xx или по почте --> xxxxxxxx@xxxx.xx
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-primary" href="{% url 'medicine:feedback_create' %}" role="button">Ссылка</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

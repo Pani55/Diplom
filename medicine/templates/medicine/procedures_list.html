@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load media_tag %}
+{% block content %}
+<div class="p-3 mb-2 bg-warning-subtle text-warning-emphasis">
+    <div class="card mb-4 box-shadow">
+        {% for procedure in procedures_list %}
+        <div class="card-header">
+            <a class="btn btn-mb btn-online-light"
+               href="{% url 'medicine:procedures_detail' procedure.pk %}">{{procedure.title}}</a>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                <li>стоимость процедуры: {{ procedure.price }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
